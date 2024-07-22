@@ -1,5 +1,5 @@
 # Use the .NET Core SDK image as the base image
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build-env
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -12,7 +12,7 @@ RUN dotnet restore
 RUN dotnet publish -c Release -o out
 
 # Create the final image using the .NET Core runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:8.0
+FROM mcr.microsoft.com/dotnet/aspnet:7.0
 WORKDIR /app
 COPY --from=build-env /app/out .
 
